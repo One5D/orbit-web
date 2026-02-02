@@ -1,9 +1,9 @@
 /** biome-ignore-all lint/suspicious/noArrayIndexKey: AceternityUI */
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@heroui/react";
+import { AnimatePresence, motion } from "motion/react";
+import { useCallback, useEffect, useState } from "react";
 
 export const FlipWords = ({
   words,
@@ -24,10 +24,13 @@ export const FlipWords = ({
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
-        startAnimation();
-      }, duration);
+    if (isAnimating) return;
+
+    const timer = setTimeout(() => {
+      startAnimation();
+    }, duration);
+
+    return () => clearTimeout(timer);
   }, [isAnimating, duration, startAnimation]);
 
   return (

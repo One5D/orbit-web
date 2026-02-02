@@ -1,0 +1,40 @@
+"use client";
+
+const NAV_ITEMS = [
+  { label: "Product", href: "#product" },
+  { label: "Features", href: "#features" },
+  { label: "About", href: "#about" },
+  { label: "FAQs", href: "#faqs" },
+];
+
+export function Navbar({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`fixed inset-x-0 top-3.5 z-50 flex justify-center ${className}`}
+    >
+      <nav
+        aria-label="Primary"
+        className={
+          "relative flex justify-around md:min-w-md lg:min-w-lg items-center gap-2 rounded-full border border-white/20 " +
+          "bg-black/70 px-3 py-1.5 text-xs font-medium text-neutral-200 " +
+          "shadow-[0_0_12px_rgba(160,110,240,0.25),0_0_24px_rgba(160,110,240,0.12)] " +
+          "backdrop-blur-md " +
+          "before:absolute before:inset-0 before:opacity-100 " +
+          "before:rounded-full " +
+          "before:bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(160,110,240,0.18),transparent_70%)] " +
+          "sm:gap-3 sm:px-4 sm:py-2 sm:text-sm"
+        }
+      >
+        {NAV_ITEMS.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className="relative z-10 px-2 py-1 transition-all duration-200 rounded-full hover:text-white hover:scale-110"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+  );
+}

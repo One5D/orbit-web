@@ -1,39 +1,47 @@
 "use client";
 
-import { useMemo } from "react";
+import { ApplePriceButton } from "@ui/components/button/ApplePriceButton";
+import { BrowserSkeleton } from "@ui/components/features/BrowserFeature";
+import { CalculatorSkeleton } from "@ui/components/features/CalculatorFeature";
+import { ClipboardSkeleton } from "@ui/components/features/ClipboardFeature";
+import { ColorPickerSkeleton } from "@ui/components/features/ColorPickerFeature";
+import { DropzoneSkeleton } from "@ui/components/features/DropzoneFeature";
+import { ImageConverterSkeleton } from "@ui/components/features/ImageConverterFeature";
+import { NotesSkeleton } from "@ui/components/features/NotesFeature";
+import { PomodoroSkeleton } from "@ui/components/features/PomodoroFeature";
+import { PreviewSkeleton } from "@ui/components/features/PreviewFeature";
+import { QRSkeleton } from "@ui/components/features/QRFeature";
+import { SystemMonitorSkeleton } from "@ui/components/features/SystemMonitorFeature";
+import { TerminalSkeleton } from "@ui/components/features/TerminalFeature";
+import { TranslateSkeleton } from "@ui/components/features/TranslateFeature";
+import { VideoTrimmerSkeleton } from "@ui/components/features/VideoTrimmerFeature";
 import { FlipWords } from "@ui/components/flipWords/FlipWords";
 import { DraggableResizableGlassCard } from "@ui/components/glass/card/draggable/DraggableGlassCard";
-import { BrowserSkeleton } from "@ui/components/features/BrowserFeature";
-import { ClipboardSkeleton } from "@ui/components/features/ClipboardFeauture";
-import { ColorPickerSkeleton } from "@ui/components/features/ColorPickerFeature";
-import { NotesSkeleton } from "@ui/components/features/NotesFeature";
-import { QRSkeleton } from "@ui/components/features/QRFeature";
-import { TerminalSkeleton } from "@ui/components/features/TerminalFeature";
-import { PomodoroSkeleton } from "@ui/components/features/PomodoroFeature";
-import { CalculatorSkeleton } from "@ui/components/features/CalculatorFeature";
-import { PreviewSkeleton } from "@ui/components/features/PreviewFeature";
-import { SystemMonitorSkeleton } from "@ui/components/features/SystemMonitorFeature";
-import { ApplePriceButton } from "@ui/components/button/ApplePriceButton";
-import { fromViewport, seededShuffle } from "@/lib/utils";
+import { useMemo } from "react";
 import { WORDS } from "@/data/features";
+import { fromViewport, seededShuffle } from "@/lib/utils";
+
+const FEATURE_SKELETONS = [
+  { title: "Notes", component: <NotesSkeleton /> },
+  { title: "Browser", component: <BrowserSkeleton /> },
+  { title: "Terminal", component: <TerminalSkeleton /> },
+  { title: "Color Picker", component: <ColorPickerSkeleton /> },
+  { title: "Clipboard", component: <ClipboardSkeleton /> },
+  { title: "Pomodoro", component: <PomodoroSkeleton /> },
+  { title: "QR Code", component: <QRSkeleton /> },
+  { title: "Calculator", component: <CalculatorSkeleton /> },
+  { title: "Preview", component: <PreviewSkeleton /> },
+  { title: "System Monitor", component: <SystemMonitorSkeleton /> },
+  { title: "Image Converter", component: <ImageConverterSkeleton /> },
+  { title: "Translate", component: <TranslateSkeleton /> },
+  { title: "Dropzone", component: <DropzoneSkeleton /> },
+  { title: "Video Trimmer", component: <VideoTrimmerSkeleton /> },
+];
 
 function useHero({ seed }: { seed: number }) {
-  const features = [
-    { title: "Notes", component: <NotesSkeleton /> },
-    { title: "Browser", component: <BrowserSkeleton /> },
-    { title: "Terminal", component: <TerminalSkeleton /> },
-    { title: "Color Picker", component: <ColorPickerSkeleton /> },
-    { title: "Clipboard", component: <ClipboardSkeleton /> },
-    { title: "Pomodoro", component: <PomodoroSkeleton /> },
-    { title: "QR Code", component: <QRSkeleton /> },
-    { title: "Calculator", component: <CalculatorSkeleton /> },
-    { title: "Preview", component: <PreviewSkeleton /> },
-    { title: "System Monitor", component: <SystemMonitorSkeleton /> },
-  ];
-
   const shuffledWords = useMemo(() => seededShuffle(WORDS, seed), [seed]);
   const selectedFeatures = useMemo(() => {
-    const shuffled = seededShuffle(features, seed + 1);
+    const shuffled = seededShuffle(FEATURE_SKELETONS, seed + 1);
     return [shuffled[0], shuffled[1]];
   }, [seed]);
 
@@ -77,7 +85,7 @@ export default function Hero({
             </div>
 
             <div className="flex gap-2 text-sm text-neutral-500">
-              <span>$12.99 / year</span>
+              <span>$14.99 / year</span>
               <span>·</span>
               <span>7-day free trial</span>
               <span>·</span>
@@ -87,7 +95,7 @@ export default function Hero({
         </div>
       </div>
 
-      {/* <div className="fixed inset-0 hidden lg:block">
+      <div className="fixed inset-0 hidden pointer-events-none lg:block z-300">
         <DraggableResizableGlassCard
           title={leftFeature.title}
           initialX={leftPos.x}
@@ -102,7 +110,7 @@ export default function Hero({
         >
           {rightFeature.component}
         </DraggableResizableGlassCard>
-      </div> */}
+      </div>
     </div>
   );
 }

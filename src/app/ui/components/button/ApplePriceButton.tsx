@@ -25,6 +25,7 @@ export function ApplePriceButton({
         "before:bg-[radial-gradient(ellipse_80%_60%_at_50%_0%,rgba(160,110,240,0.18),transparent_70%)] " +
         className
       }
+      onClick={onClick}
     >
       <AppleIcon className="w-4 h-4" />
       <span>{price}</span>

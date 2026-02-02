@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 import "./globals.css";
-import Background from "./ui/components/background/Background";
-import { StarsBackground } from "./ui/components/starsBackground/StartBackground";
-import { ShootingStars } from "./ui/components/shootingStars/ShootingStart";
+import Background from "@ui/components/background/Background";
+import { ShootingStars } from "@ui/components/shootingStars/ShootingStart";
+import { StarsBackground } from "@ui/components/starsBackground/StartBackground";
+import { Navbar } from "@ui/components/navbar/Navbar";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -33,6 +34,14 @@ export const metadata: Metadata = {
     "qr code generator macOS",
     "system monitor macOS",
     "floating productivity app",
+    "browser macOS",
+    "terminal macOS",
+    "preview macOS",
+    "calculator macOS",
+    "image converter macOS",
+    "translator macOS",
+    "file dropzone macOS",
+    "video trimmer macOS",
   ],
 };
 
@@ -42,15 +51,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scroll-smooth">
       <body className={`${onest.variable} min-h-screen antialiased bg-black`}>
         <div className="relative min-h-screen">
-          <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="fixed inset-0 z-0 pointer-events-none">
             <Background />
             <StarsBackground />
             <ShootingStars />
           </div>
 
+          <Navbar />
           <main className="relative z-10">{children}</main>
         </div>
       </body>

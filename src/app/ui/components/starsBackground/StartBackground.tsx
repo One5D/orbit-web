@@ -2,15 +2,14 @@
 /** biome-ignore-all lint/style/useImportType: AceternityUI */
 "use client";
 
+import { cn } from "@heroui/react";
 import React, {
-  useState,
-  useEffect,
-  useRef,
   RefObject,
   useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from "react";
-
-import { cn } from "@heroui/react";
 
 interface StarProps {
   x: number;

@@ -63,7 +63,7 @@ export function DraggableResizableGlassCard({
       bounds="window"
       minWidth={280}
       minHeight={minHeight}
-      className="z-50"
+      className="pointer-events-auto z-[200]"
     >
       <motion.div
         className="w-full h-full"

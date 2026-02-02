@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
 import { cn } from "@heroui/react";
+import { useEffect, useRef, useState } from "react";
 
 interface ShootingStar {
   id: number;
@@ -57,7 +57,17 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
   const svgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
+    let timeoutId: number | undefined;
+    let canceled = false;
+
+    const scheduleNext = () => {
+      const randomDelay = Math.random() * (maxDelay - minDelay) + minDelay;
+      timeoutId = window.setTimeout(createStar, randomDelay);
+    };
+
     const createStar = () => {
+      if (canceled) return;
+
       const { x, y, angle } = getRandomStartPoint();
       const newStar: ShootingStar = {
         id: Date.now(),
@@ -69,18 +79,24 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
         distance: 0,
       };
       setStar(newStar);
-
-      const randomDelay = Math.random() * (maxDelay - minDelay) + minDelay;
-      setTimeout(createStar, randomDelay);
+      scheduleNext();
     };
 
     createStar();
 
-    return () => {};
+    return () => {
+      canceled = true;
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+    };
   }, [minSpeed, maxSpeed, minDelay, maxDelay]);
 
   useEffect(() => {
+    let canceled = false;
+
     const moveStar = () => {
+      if (canceled) return;
       if (star) {
         setStar((prevStar) => {
           if (!prevStar) return null;
@@ -112,7 +128,10 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     };
 
     const animationFrame = requestAnimationFrame(moveStar);
-    return () => cancelAnimationFrame(animationFrame);
+    return () => {
+      canceled = true;
+      cancelAnimationFrame(animationFrame);
+    };
   }, [star]);
 
   return (
