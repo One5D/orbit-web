@@ -20,3 +20,11 @@ export function fromViewport({ xPct, yPct }: { xPct: number; yPct: number }) {
     y: Math.round(window.innerHeight * yPct),
   };
 }
+
+export function formatDate(dateString: string) {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
