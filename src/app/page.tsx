@@ -1,5 +1,6 @@
 import { Accordion, IconChevronDown, Separator } from "@heroui/react";
 import { FeatureShowcase } from "@ui/components/FeatureShowcase";
+import { Footer } from "@ui/components/footer/Footer";
 import Hero from "@ui/sections/hero/Hero";
 import Image from "next/image";
 import { FAQ_ITEMS } from "@/data/faqs";
@@ -124,6 +125,8 @@ export default function Home() {
           </Accordion>
         </div>
       </section>
+
+      <Footer />
     </main>
   );
 }
