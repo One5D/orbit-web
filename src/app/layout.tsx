@@ -43,6 +43,9 @@ export const metadata: Metadata = {
     "file dropzone macOS",
     "video trimmer macOS",
   ],
+  verification: {
+    google: "5dgkTz41F_5R5TCxd9ygYnnI8wvXmK702x8EIhhktSA",
+  },
 };
 
 export default function RootLayout({
