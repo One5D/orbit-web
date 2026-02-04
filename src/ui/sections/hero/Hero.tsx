@@ -85,7 +85,13 @@ export default function Hero({
             </div>
 
             <div className="flex gap-2 text-sm text-neutral-500">
-              <span>$14.99 / year</span>
+              <span>
+                <s>$19.99 / year</s>
+              </span>
+              <span>·</span>
+              <span>
+                $14.99 / year <strong>(Launch price)</strong>
+              </span>
               <span>·</span>
               <span>7-day free trial</span>
               <span>·</span>
