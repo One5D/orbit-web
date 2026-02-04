@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Background from "@ui/components/background/Background";
 import { ShootingStars } from "@ui/components/shootingStars/ShootingStart";
@@ -56,6 +57,18 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <body className={`${onest.variable} min-h-screen antialiased bg-black`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-KRPYNNNJVB"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-KRPYNNNJVB');
+          `}
+        </Script>
         <div className="relative min-h-screen">
           <div className="fixed inset-0 z-0 pointer-events-none">
             <Background />
