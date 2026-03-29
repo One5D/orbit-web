@@ -25,7 +25,7 @@ export const FAQ_ITEMS: FaqItem[] = [
     title: "Can I request new features?",
     icon: <Box />,
     content:
-      "Yes. Feature requests are welcome and help shape the future of Orbit. You can send suggestions via email — if a feature is requested often (or benefits many users), it will be prioritized.",
+      "Yes. Feature requests are welcome and help shape the future of Orbit. You can send suggestions in the Roadmap website or contact support via email.",
   },
   {
     title: "What is Orbit and how does it work?",
@@ -89,6 +89,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     title: "How do I get support or report bugs?",
     icon: <ArrowsRotateLeft />,
-    content: "You can contact support or report issues via email.",
+    content: "You can contact support or report bugs through the Roadmap website or via email.",
   },
 ];

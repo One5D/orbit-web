@@ -1,13 +1,14 @@
-"use client";
+import { ArrowUpRightFromSquare } from "@gravity-ui/icons";
 
 const NAV_ITEMS = [
-  { label: "Product", href: "#product" },
-  { label: "Features", href: "#features" },
-  { label: "About", href: "#about" },
-  { label: "FAQs", href: "#faqs" },
+  { label: "Product", href: "#product", isInternal: true },
+  { label: "Features", href: "#features", isInternal: true },
+  { label: "About", href: "#about", isInternal: true },
+  { label: "FAQs", href: "#faqs", isInternal: true },
+  { label: "Roadmap", href: "https://orbitmacos.featurebase.app/en/roadmap", isInternal: false },
 ];
 
-export function Navbar({ className = "" }: { className?: string }) {
+export function Navbar({ className = "" }: { className?: string; }) {
   return (
     <div
       className={`fixed inset-x-0 top-3.5 z-50 flex justify-center ${className}`}
@@ -29,9 +30,16 @@ export function Navbar({ className = "" }: { className?: string }) {
           <a
             key={item.href}
             href={item.href}
+            target={item.isInternal ? "_self" : "_blank"}
+            rel={item.isInternal ? undefined : "noopener noreferrer"}
             className="relative z-10 px-2 py-1 transition-all duration-200 rounded-full hover:text-white hover:scale-110"
           >
-            {item.label}
+            <span className="inline-flex items-center gap-1">
+              {item.label}
+              {!item.isInternal && (
+                <ArrowUpRightFromSquare className="w-4 h-4" />
+              )}
+            </span>
           </a>
         ))}
       </nav>
