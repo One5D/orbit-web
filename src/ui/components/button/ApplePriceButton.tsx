@@ -11,7 +11,7 @@ export function ApplePriceButton({
 }>) {
   return (
     <a
-      href="https://macos.orbit.o5d.app/Orbit-v1.20.12.dmg"
+      href="https://macos.orbit.o5d.app/Orbit-v1.31.12.dmg"
       target="_blank"
       rel="noopener noreferrer"
       className={
